@@ -29,9 +29,50 @@ public class CalculadoraGUI extends JFrame  implements ActionListener  {
         }
 
         // Crear botones para las operaciones
-        //botonSumar = 
+        bsuma = new JButton("+");
+        bsuma.addActionListener(this);
+        
+        bresta = new JButton("-");
+        bresta.addActionListener(this);
+
+        bigual = new JButton("=");
+        bigual.addActionListener(this);
+
+        blimpiar = new JButton("C");
+        blimpiar.addActionListener(this);
+
+        // Celdas para los botones (panel)
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new GridLayout(4, 4, 10, 20));
+        for (int i = 1; i <= 9; i++) panelBotones.add(botonesNumeros[i]);
+        panelBotones.add(bsuma);
+        panelBotones.add(bresta);
+        panelBotones.add(botonesNumeros[0]);
+        panelBotones.add(bigual);
+        panelBotones.add(blimpiar);
+
+        // Panel principal
+        JPanel panelPrincipal = new JPanel();
+        panelPrincipal.setLayout(new BorderLayout());
+        panelPrincipal.add(pantalla, BorderLayout.NORTH);
+        panelPrincipal.add(panelBotones, BorderLayout.CENTER);
+
+        // Agregar panel principal a la ventana
+        setLayout(new BorderLayout());
+        add(panelPrincipal);
+
+        NumeroTemporal = 0;
+        operacion = ' ';
+
+        
 
     }
+    @Override 
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             CalculadoraGUI calculadora = new CalculadoraGUI();
