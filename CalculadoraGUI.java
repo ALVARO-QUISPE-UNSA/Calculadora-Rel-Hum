@@ -87,11 +87,10 @@ public class CalculadoraGUI extends JFrame  implements ActionListener  {
         paneloperaciones.add(bresta);
         paneloperaciones.add(bmultiplicacion);
         paneloperaciones.add(bdivision);
-        paneloperaciones.add(bigual);
         paneloperaciones.add(bblanco);
+        paneloperaciones.add(bigual);
+        
 
-        
-        
 
         //Panel principal
         JPanel panelPrincipal = new JPanel();
