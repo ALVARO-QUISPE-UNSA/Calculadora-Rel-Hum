@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 public class CalculadoraGUI extends JFrame  implements ActionListener  {
     private JTextField pantalla;
     private JButton [] botonesNumeros;
-    private JButton bsuma, bresta, bigual, blimpiar;
+    private JButton bsuma, bresta, bigual, blimpiar, bdivision, bmultiplicacion, bborrar;
     private double NumeroTemporal;
     private char operacion;
 
@@ -41,23 +41,40 @@ public class CalculadoraGUI extends JFrame  implements ActionListener  {
         blimpiar = new JButton("C");
         blimpiar.addActionListener(this);
 
-        // Celdas para los botones (panel)
-        JPanel panelBotones = new JPanel();
-        panelBotones.setLayout(new GridLayout(4, 4, 10, 20));
-        for (int i = 1; i <= 9; i++) panelBotones.add(botonesNumeros[i]);
-        panelBotones.add(bsuma);
-        panelBotones.add(bresta);
-        panelBotones.add(botonesNumeros[0]);
-        panelBotones.add(bigual);
-        panelBotones.add(blimpiar);
+        bdivision = new JButton("÷");
+        bdivision.addActionListener(this);
 
-        // Panel principal
+        bmultiplicacion = new JButton("x");
+        bmultiplicacion.addActionListener(this);
+
+        bborrar = new JButton("⌂ DEL")
+        bborrar.addActionListener(this);
+
+
+
+
+        // panel de Operaciones y cero
+        JPanel paneloperaciones = new JPanel();
+        paneloperaciones.setLayout(new GridLayout(5, 3, 1, 1));
+        for (int i = 1; i <= 9; i++) paneloperaciones.add(botonesNumeros[i]);
+        paneloperaciones.add(botonesNumeros[0]);
+        paneloperaciones.add(bsuma);
+        paneloperaciones.add(bresta);
+        paneloperaciones.add(bmultiplicacion);
+        paneloperaciones.add(bdivision);
+        paneloperaciones.add(bigual);
+
+        
+        
+
+        //Panel principal
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(pantalla, BorderLayout.NORTH);
-        panelPrincipal.add(panelBotones, BorderLayout.CENTER);
+        panelPrincipal.add(paneloperaciones, BorderLayout.CENTER);
+        
 
-        // Agregar panel principal a la ventana
+        // Agregar panel a la ventana principal
         setLayout(new BorderLayout());
         add(panelPrincipal);
 
@@ -69,6 +86,10 @@ public class CalculadoraGUI extends JFrame  implements ActionListener  {
     }
     @Override 
     public void actionPerformed(ActionEvent e) {
+        Object presionado = e.getSource();
+    //Escribir si se presiona un boton
+    String numero = ((JButton) presionado).getText();
+    pantalla.setText(pantalla.getText() + numero);
 
     }
 
