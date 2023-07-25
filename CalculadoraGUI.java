@@ -3,29 +3,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class CalculadoraGUI extends JFrame  implements ActionListener  {
+
+public class CalculadoraGUI extends JFrame implements ActionListener {
     private JTextField pantalla;
-    private JButton [] botonesNumeros;
-    private JButton bsuma, bresta, bigual, 
-                blimpiar, bdivision, bmultiplicacion, 
-                bborrar, bblanco;
+    private JButton[] botonesNumeros;
+    private JButton bsuma, bresta, bigual, blimpiar, bdivision, bmultiplicacion, bborrar, bblanco;
     private ArrayList<JButton> AllButtons = new ArrayList<>();
     private double NumeroTemporal;
     private char operacion;
 
     public CalculadoraGUI() {
-        //Opciones de pantalla general
+        // Opciones de pantalla general
         setTitle("Calculadora - Rel. Hum.");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 400);
         setLocationRelativeTo(null);
 
-        //Crear campo de texto
+        // Crear campo de texto
         pantalla = new JTextField();
         pantalla.setEditable(true);
         pantalla.setFont(new Font("Times New Roman", Font.ITALIC, 24));
 
-        // Crear los botones de los numeros
+        // Crear los botones de los números
         botonesNumeros = new JButton[10];
         for (int i = 0; i < 10; i++) {
             botonesNumeros[i] = new JButton(String.valueOf(i));
@@ -37,7 +36,7 @@ public class CalculadoraGUI extends JFrame  implements ActionListener  {
         bsuma = new JButton("+");
         AllButtons.add(bsuma);
         bsuma.addActionListener(this);
-        
+
         bresta = new JButton("-");
         AllButtons.add(bresta);
         bresta.addActionListener(this);
@@ -66,20 +65,18 @@ public class CalculadoraGUI extends JFrame  implements ActionListener  {
         AllButtons.add(bblanco);
 
         // Interfaz de todos los botones
-
-        for(JButton s : AllButtons) {
+        for (JButton s : AllButtons) {
             s.setBackground(new Color(0, 0, 0));
             s.setForeground(new Color(250, 250, 250));
             Font newfont = new Font("Century Gothic", Font.BOLD, 18);
             s.setFont(newfont);
-
         }
 
-
-        // panel de Operaciones y cero
+        // Panel de Operaciones y cero
         JPanel paneloperaciones = new JPanel();
         paneloperaciones.setLayout(new GridLayout(6, 3, 1, 1));
-        for (int i = 1; i <= 9; i++) paneloperaciones.add(botonesNumeros[i]);
+        for (int i = 1; i <= 9; i++)
+            paneloperaciones.add(botonesNumeros[i]);
         paneloperaciones.add(botonesNumeros[0]);
         paneloperaciones.add(bborrar);
         paneloperaciones.add(blimpiar);
@@ -89,15 +86,12 @@ public class CalculadoraGUI extends JFrame  implements ActionListener  {
         paneloperaciones.add(bdivision);
         paneloperaciones.add(bblanco);
         paneloperaciones.add(bigual);
-        
 
-
-        //Panel principal
+        // Panel principal
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(pantalla, BorderLayout.NORTH);
         panelPrincipal.add(paneloperaciones, BorderLayout.CENTER);
-        
 
         // Agregar panel a la ventana principal
         setLayout(new BorderLayout());
@@ -105,23 +99,33 @@ public class CalculadoraGUI extends JFrame  implements ActionListener  {
 
         NumeroTemporal = 0;
         operacion = ' ';
-
-        
-
     }
-    @Override 
+
+    @Override
     public void actionPerformed(ActionEvent e) {
         Object presionado = e.getSource();
-    //Escribir si se presiona un boton
-    String numero = ((JButton) presionado).getText();
-    pantalla.setText(pantalla.getText() + numero);
+        String textoActual = pantalla.getText();
 
+        if (presionado == bsuma) {
+            operacion = '+';
+            pantalla.setText(textoActual + "+");
+        } else if (presionado == bigual) {
+            String[] numeros = textoActual.split("\\+");
+            double resultado = 0;
+            for (String num : numeros) {
+                resultado += Double.parseDouble(num);
+            }
+            pantalla.setText(String.valueOf(resultado));
+        } else {
+            // Escribir si se presiona un número o cualquier otro botón
+            String numero = ((JButton) presionado).getText();
+            pantalla.setText(textoActual + numero);
+        }
     }
-
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            CalculadoraGUI calculadora = new CalculadoraGUI();
+        	CalculadoraGUI calculadora = new CalculadoraGUI();
             calculadora.setVisible(true);
         });
     }
