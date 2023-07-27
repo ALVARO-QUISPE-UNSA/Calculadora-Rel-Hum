@@ -100,6 +100,14 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
         NumeroTemporal = 0;
         operacion = ' ';
     }
+    private double dividir(double num1, double num2) {
+        if (num2 != 0) {
+            return num1 / num2;
+        } else {
+            JOptionPane.showMessageDialog(null, "Error: No DEFINIDO");
+            return 0;
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -109,50 +117,30 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
         if (presionado == bsuma) {
             operacion = '+';
             pantalla.setText(textoActual + "+");
-        } else if (presionado == bresta) {
-            // ... (código existente)
-        } else if (presionado == bmultiplicacion) {
-            // ... (código existente)
-       } else if (presionado == bdivision) {
-        operacion = '/';
-        pantalla.setText(textoActual + "÷");
-      } else if (presionado == bigual) {
-        String[] numeros = textoActual.split("÷");
-         if (textoActual.contains("÷")) {
+        }  if (presionado == bdivision) {
+            operacion = '/';
+            pantalla.setText(textoActual + "÷");
+        } else if (presionado == bigual) {
             String[] numeros = textoActual.split("÷");
             if (numeros.length == 2) {
                 double num1 = Double.parseDouble(numeros[0]);
                 double num2 = Double.parseDouble(numeros[1]);
                 double resultado = dividir(num1, num2);
                 pantalla.setText(String.valueOf(resultado));
-        }
-    } else {
+            }
+        } else if (presionado == bigual) {
+            String[] numeros = textoActual.split("\\+");
+            double resultado = 0;
+            for (String num : numeros) {
+                resultado += Double.parseDouble(num);
+            }
+            pantalla.setText(String.valueOf(resultado));
         } else {
             // Escribir si se presiona un número o cualquier otro botón
             String numero = ((JButton) presionado).getText();
             pantalla.setText(textoActual + numero);
         }
-<<<<<<< HEAD
-	if ( presionado == bresta){
-            operacion  = '-'; 
-            NumeroTemporal = Double.parseDouble (pantalla.getText());
-	    if (presionado==bigual){
-            	double numeroActual = Double.parseDouble (pantalla.getText());
-	        NumeroTemporal =NumeroTemporal-numeroActual;
-		pantalla.setText(String.valueOf(NumeroTemporal));
-	    }else if (presionado ==blimpiar){
-            	NumeroTemporal =0;
-            	operacion = ' ';
-            	pantalla.setText("");
-            }else {
-            	String numero = ((JButton) presionado).getText();
-            	pantalla.setText(pantalla.getText() + numero);
-            }
-        }
-=======
->>>>>>> f97bd8148f956438ed0d249804a7eeb1c69a1b75
     }
-    
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -161,13 +149,3 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
         });
     }
 }
-// Método de división
-private double dividir(double dividendo, double divisor) {
-    if (divisor != 0) {
-        return dividendo / divisor;
-    } else {
-        JOptionPane.showMessageDialog(null, "Error: No definido");
-        return 0;
-    }
-}
-
