@@ -117,7 +117,7 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
         if (presionado == bsuma) {
             operacion = '+';
             pantalla.setText(textoActual + "+");
-        }  if (presionado == bdivision) {
+        }  else if (presionado == bdivision) {
             operacion = '/';
             pantalla.setText(textoActual + "÷");
         } else if (presionado == bigual) {
@@ -136,7 +136,7 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
             }
             pantalla.setText(String.valueOf(resultado));
         }
-	if ( presionado == bresta){
+	if (presionado == bresta){
             operacion  = '-'; 
             NumeroTemporal = Double.parseDouble (pantalla.getText());
 	    pantalla.setText("");
