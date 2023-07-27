@@ -135,6 +135,21 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
                 resultado += Double.parseDouble(num);
             }
             pantalla.setText(String.valueOf(resultado));
+        }
+	if ( presionado == bresta){
+            operacion  = '-'; 
+            NumeroTemporal = Double.parseDouble (pantalla.getText());
+	    pantalla.setText("");
+        }else if (presionado==bigual){
+            double numeroActual = Double.parseDouble (pantalla.getText());
+            if ( operacion == '-'){
+                NumeroTemporal =NumeroTemporal-numeroActual;
+            }
+            pantalla.setText(String.valueOf(NumeroTemporal));
+        }else if (presionado ==blimpiar){
+            NumeroTemporal =0;
+            operacion = ' ';
+            pantalla.setText("");
         } else {
             // Escribir si se presiona un número o cualquier otro botón
             String numero = ((JButton) presionado).getText();
