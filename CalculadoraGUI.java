@@ -124,19 +124,18 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
 	if ( presionado == bresta){
             operacion  = '-'; 
             NumeroTemporal = Double.parseDouble (pantalla.getText());
-        }else if (presionado==bigual){
-            double numeroActual = Double.parseDouble (pantalla.getText());
-            if ( presionado == bresta){
-                NumeroTemporal =NumeroTemporal-numeroActual;
+	    if (presionado==bigual){
+            	double numeroActual = Double.parseDouble (pantalla.getText());
+	        NumeroTemporal =NumeroTemporal-numeroActual;
+		pantalla.setText(String.valueOf(NumeroTemporal));
+	    }else if (presionado ==blimpiar){
+            	NumeroTemporal =0;
+            	operacion = ' ';
+            	pantalla.setText("");
+            }else {
+            	String numero = ((JButton) presionado).getText();
+            	pantalla.setText(pantalla.getText() + numero);
             }
-            pantalla.setText(String.valueOf(NumeroTemporal));
-        }else if (presionado ==blimpiar){
-            NumeroTemporal =0;
-            operacion = ' ';
-            pantalla.setText("");
-        }else {
-            String numero = ((JButton) presionado).getText();
-            pantalla.setText(pantalla.getText() + numero);
         }
     }
 	
