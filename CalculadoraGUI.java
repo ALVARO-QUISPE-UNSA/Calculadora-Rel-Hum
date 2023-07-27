@@ -100,55 +100,38 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
         NumeroTemporal = 0;
         operacion = ' ';
     }
-    private double dividir(double num1, double num2) {
-        if (num2 != 0) {
-            return num1 / num2;
-        } else {
-            JOptionPane.showMessageDialog(null, "Error: No DEFINIDO");
-            return 0;
-        }
-    }
+    //private double dividir(double num1, double num2) {
+      //  if (num2 != 0) {
+        //    return num1 / num2;
+        //} else {
+          //  JOptionPane.showMessageDialog(null, "Error: No DEFINIDO");
+            //return 0;
+        //}
+    //}
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object presionado = e.getSource();
         String textoActual = pantalla.getText();
-        // tienen que crear una manera de que funcione todo junto, con una sola cadena de if
+        // funcion suma
         if (presionado == bsuma) {
             operacion = '+';
-            pantalla.setText(textoActual + "+");
-        }  else if (presionado == bdivision) {
-            operacion = '/';
-            pantalla.setText(textoActual + "÷");
+            NumeroTemporal += Double.parseDouble(pantalla.getText());
+            pantalla.setText("");
+        } else if (presionado == bresta) {
+            operacion = '-';
+            NumeroTemporal = Double.parseDouble(pantalla.getText());
+            pantalla.setText("");
         } else if (presionado == bigual) {
-            String[] numeros = textoActual.split("÷");
-            if (numeros.length == 2) {
-                double num1 = Double.parseDouble(numeros[0]);
-                double num2 = Double.parseDouble(numeros[1]);
-                double resultado = dividir(num1, num2);
-                pantalla.setText(String.valueOf(resultado));
-            }
-        } else if (presionado == bigual) {
-            String[] numeros = textoActual.split("\\+");
-            double resultado = 0;
-            for (String num : numeros) {
-                resultado += Double.parseDouble(num);
-            }
-            pantalla.setText(String.valueOf(resultado));
-        }
-
-	    if (presionado == bresta){
-            operacion  = '-'; 
-            NumeroTemporal = Double.parseDouble (pantalla.getText());
-	    pantalla.setText("");
-        }else if (presionado==bigual){
-            double numeroActual = Double.parseDouble (pantalla.getText());
-            if ( operacion == '-'){
-                NumeroTemporal =NumeroTemporal-numeroActual;
+            double numeroActual = Double.parseDouble(pantalla.getText());
+            if (operacion == '+') {
+                NumeroTemporal += numeroActual;
+            } else if (operacion == '-') {
+                NumeroTemporal -= numeroActual;
             }
             pantalla.setText(String.valueOf(NumeroTemporal));
-        }else if (presionado ==blimpiar){
-            NumeroTemporal =0;
+        } else if (presionado == blimpiar) {
+            NumeroTemporal = 0;
             operacion = ' ';
             pantalla.setText("");
         } else {
@@ -157,7 +140,6 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
             pantalla.setText(textoActual + numero);
         }
     }
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
         	CalculadoraGUI calculadora = new CalculadoraGUI();
