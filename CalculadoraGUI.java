@@ -121,11 +121,7 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
             String numero = ((JButton) presionado).getText();
             pantalla.setText(textoActual + numero);
         }
-    }
-    @Override 
-    public void actionPerformed(ActionEvent e) {
-        Object presionado = e.getSource();
-        if ( presionado == bresta){
+	if ( presionado == bresta){
             operacion  = '-'; 
             NumeroTemporal = Double.parseDouble (pantalla.getText());
         }else if (presionado==bigual){
@@ -142,9 +138,6 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
             String numero = ((JButton) presionado).getText();
             pantalla.setText(pantalla.getText() + numero);
         }
-    
-    
-
     }
 	
 
