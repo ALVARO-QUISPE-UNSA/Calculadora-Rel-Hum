@@ -113,7 +113,7 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object presionado = e.getSource();
         String textoActual = pantalla.getText();
-
+        // tienen que crear una manera de que funcione todo junto, con una sola cadena de if
         if (presionado == bsuma) {
             operacion = '+';
             pantalla.setText(textoActual + "+");
@@ -136,7 +136,8 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
             }
             pantalla.setText(String.valueOf(resultado));
         }
-	if (presionado == bresta){
+
+	    if (presionado == bresta){
             operacion  = '-'; 
             NumeroTemporal = Double.parseDouble (pantalla.getText());
 	    pantalla.setText("");
