@@ -108,7 +108,7 @@ public void actionPerformed(ActionEvent e) {
 
     if (presionado == bsuma) {
         operacion = '+';
-        NumeroTemporal += Double.parseDouble(pantalla.getText());
+        NumeroTemporal = Double.parseDouble(pantalla.getText());
         pantalla.setText("");
     } else if (presionado == bresta) {
         operacion = '-';
