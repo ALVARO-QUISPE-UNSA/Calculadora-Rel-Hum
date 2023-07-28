@@ -100,55 +100,60 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
         NumeroTemporal = 0;
         operacion = ' ';
     }
-    //private double dividir(double num1, double num2) {
-      //  if (num2 != 0) {
-        //    return num1 / num2;
-        //} else {
-          //  JOptionPane.showMessageDialog(null, "Error: No DEFINIDO");
-            //return 0;
-        //}
-    //}
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        Object presionado = e.getSource();
-        String textoActual = pantalla.getText();
-        // funcion suma
-        if (presionado == bsuma) {
-            operacion = '+';
-            NumeroTemporal += Double.parseDouble(pantalla.getText());
-            pantalla.setText("");
-        } else if (presionado == bresta) {
-            operacion = '-';
-            NumeroTemporal = Double.parseDouble(pantalla.getText());
-            pantalla.setText("");
-        } else if (presionado == bmultiplicacion){
-            operacion = '*';
-            numeroTemporal = Double.parseDouble(pantalla.getText());
-            pantalla.setText( );
-        } else if (presionado == bigual) {
-            double numeroActual = Double.parseDouble(pantalla.getText());
-            if (operacion == '+') {
-                NumeroTemporal += numeroActual;
-            } else if (operacion == '-') {
-                NumeroTemporal -= numeroActual;
-            } else if (operacion == '*') {
-                NumeroTemporal *= numeroActual;
-            } pantalla.setText(String.valueOf(NumeroTemporal));
-        } else if (presionado == blimpiar) {
-            NumeroTemporal = 0;
-            operacion = ' ';
-            pantalla.setText("");
-        } else {
-            // Escribir si se presiona un número o cualquier otro botón
-            String numero = ((JButton) presionado).getText();
-            pantalla.setText(textoActual + numero);
+public void actionPerformed(ActionEvent e) {
+    Object presionado = e.getSource();
+    String textoActual = pantalla.getText();
+
+    if (presionado == bsuma) {
+        operacion = '+';
+        NumeroTemporal += Double.parseDouble(pantalla.getText());
+        pantalla.setText("");
+    } else if (presionado == bresta) {
+        operacion = '-';
+        NumeroTemporal = Double.parseDouble(pantalla.getText());
+        pantalla.setText("");
+    } else if (presionado == bmultiplicacion) {
+        operacion = '*';
+        NumeroTemporal = Double.parseDouble(pantalla.getText());
+        pantalla.setText("");
+    } else if (presionado == bdivision) {
+        operacion = '/';
+        NumeroTemporal = Double.parseDouble(pantalla.getText());
+        pantalla.setText("");
+    } else if (presionado == bigual) {
+        double numeroActual = Double.parseDouble(pantalla.getText());
+        if (operacion == '+') {
+            NumeroTemporal += numeroActual;
+        } else if (operacion == '-') {
+            NumeroTemporal -= numeroActual;
+        } else if (operacion == '*') {
+            NumeroTemporal *= numeroActual;
+        } else if (operacion == '/') {
+            if (numeroActual != 0) {
+                NumeroTemporal /= numeroActual;
+            } else {
+                JOptionPane.showMessageDialog(null, "Error: No definido");
+            }
         }
+        pantalla.setText(String.valueOf(NumeroTemporal));
+    } else if (presionado == blimpiar) {
+        NumeroTemporal = 0;
+        operacion = ' ';
+        pantalla.setText("");
+    } else {
+        // Escribir si se presiona un número o cualquier otro botón
+        String numero = ((JButton) presionado).getText();
+        pantalla.setText(textoActual + numero);
     }
+}
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-        	CalculadoraGUI calculadora = new CalculadoraGUI();
+            CalculadoraGUI calculadora = new CalculadoraGUI();
             calculadora.setVisible(true);
         });
     }
 }
+
