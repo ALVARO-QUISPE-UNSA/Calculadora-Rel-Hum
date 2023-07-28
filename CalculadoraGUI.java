@@ -122,14 +122,19 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
             operacion = '-';
             NumeroTemporal = Double.parseDouble(pantalla.getText());
             pantalla.setText("");
+        } else if (presionado == bmultiplicacion){
+            operacion = '*';
+            numeroTemporal = Double.parseDouble(pantalla.getText());
+            pantalla.setText( );
         } else if (presionado == bigual) {
             double numeroActual = Double.parseDouble(pantalla.getText());
             if (operacion == '+') {
                 NumeroTemporal += numeroActual;
             } else if (operacion == '-') {
                 NumeroTemporal -= numeroActual;
-            }
-            pantalla.setText(String.valueOf(NumeroTemporal));
+            } else if (operacion == '*') {
+                NumeroTemporal *= numeroActual;
+            } pantalla.setText(String.valueOf(NumeroTemporal));
         } else if (presionado == blimpiar) {
             NumeroTemporal = 0;
             operacion = ' ';
