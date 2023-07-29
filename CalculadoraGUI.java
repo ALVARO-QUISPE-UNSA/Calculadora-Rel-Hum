@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 public class CalculadoraGUI extends JFrame implements ActionListener {
     private JTextField pantalla;
     private JButton[] botonesNumeros;
-    private JButton bsuma, bresta, bigual, blimpiar, bdivision, bmultiplicacion, bborrar, bblanco;
+    private JButton bsuma, bresta, bigual, blimpiar, bdivision, bmultiplicacion, bborrar, bblanco, bblanco1;
     private ArrayList<JButton> AllButtons = new ArrayList<>();
     private double NumeroTemporal;
     private char operacion;
@@ -64,6 +64,9 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
         bblanco = new JButton("");
         AllButtons.add(bblanco);
 
+        bblanco1 = new JButton("");
+        AllButtons.add(bblanco1);
+
         // Interfaz de todos los botones
         for (JButton s : AllButtons) {
             s.setBackground(new Color(0, 0, 0));
@@ -77,15 +80,15 @@ public class CalculadoraGUI extends JFrame implements ActionListener {
         paneloperaciones.setLayout(new GridLayout(6, 3, 1, 1));
         for (int i = 1; i <= 9; i++)
             paneloperaciones.add(botonesNumeros[i]);
-        paneloperaciones.add(botonesNumeros[0]);
-        paneloperaciones.add(bborrar);
-        paneloperaciones.add(blimpiar);
-        paneloperaciones.add(bsuma);
-        paneloperaciones.add(bresta);
-        paneloperaciones.add(bmultiplicacion);
-        paneloperaciones.add(bdivision);
-        paneloperaciones.add(bblanco);
-        paneloperaciones.add(bigual);
+            paneloperaciones.add(bblanco1);
+            paneloperaciones.add(botonesNumeros[0]);
+            paneloperaciones.add(bblanco);
+            paneloperaciones.add(bsuma);
+            paneloperaciones.add(bresta);
+            paneloperaciones.add(bmultiplicacion);
+            paneloperaciones.add(bdivision);
+            paneloperaciones.add(bigual);
+            paneloperaciones.add(blimpiar);
 
         // Panel principal
         JPanel panelPrincipal = new JPanel();
